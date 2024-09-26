@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
 require_once 'clases.php';
 
+
+
 // Obtener la acción del query string, 'list' por defecto
 $action = isset($_GET['action']) ? $_GET['action'] : 'list';
 

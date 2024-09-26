@@ -1,5 +1,7 @@
 <?php
-class RecursoBiblioteca {
+
+require_once ("Prestable.php");
+class RecursoBiblioteca implements Prestable {
     public $id;
     public $titulo;
     public $autor;
