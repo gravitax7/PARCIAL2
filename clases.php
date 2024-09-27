@@ -74,24 +74,30 @@ class GestorBiblioteca extends RecursoBiblioteca {
         $data = json_decode($json, true);
         
         foreach ($data as $recursoData) {
-            foreach ($data as $recursoData) {
-                switch ($recursoData['tipo']) {
-                    case 'Libro':
-                        $recurso = new Libro($recursoData, $recursoData['isbn']);
-                        break;
-                    case 'Revista':
-                        $recurso = new Revista($recursoData, $recursoData['numeroEdicion']);
-                        break;
-                    case 'DVD':
-                        $recurso = new DVD($recursoData, $recursoData['duracion']);
-                        break;
-                    default:
-                        continue;
-                }
-                $this->recursos[] = $recurso;
-        
-        return $this->recursos;
-    }
 
-    // Implementar los demás métodos aquí
+            if (!isset($recursoData['tipo'])) {
+                continue;
+            }
+
+            switch ($recursoData['tipo']) {
+                case 'Libro':
+                    $recurso = new Libro($recursoData, $recursoData['isbn']);
+                    break;
+                case 'Revista':
+                    $recurso = new Revista($recursoData, $recursoData['numeroEdicion']);
+                    break;
+                case 'DVD':
+                    $recurso = new DVD($recursoData, $recursoData['duracion']);
+                    break;
+                default:
+                    continue;
+            }
+        return $this->recursos;
+                                           
+
+                }
+    }
 }
+
+    
+    // Implementar los demás métodos aquí
