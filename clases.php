@@ -18,6 +18,32 @@ class RecursoBiblioteca {
 }
 
 // Implementar las clases Libro, Revista y DVD aquí
+class Libro extends RecursoBiblioteca{
+    public $isbn;
+
+    public function __construct($datos, $isbn) {
+        parent::__construct($datos);
+        $this->isbn = $isbn;
+    }
+}
+
+class Revista extends RecursoBiblioteca{
+    public $numeroEdicion;
+    public function __construct($datos, $numeroEdicion) {
+        parent::__construct($datos);
+        $this->numeroEdicion = $numeroEdicion;
+    }
+}
+
+class DVD extends RecursoBiblioteca{
+    public $duracion;
+    public function __construct($datos, $duracion) {
+        parent::__construct($datos);
+        $this->duracion = $duracion;
+    }
+}
+
+
 
 class GestorBiblioteca {
     private $recursos = [];
