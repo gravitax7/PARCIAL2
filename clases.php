@@ -13,7 +13,9 @@ abstract class RecursoBiblioteca implements prestable{
     public $fechaAdquisicion;
     public $tipo;
 
-
+    public function obtenerDetallesPrestamo (){
+        
+    }
     public function __construct($datos) {
         foreach ($datos as $key => $value) {
             if (property_exists($this, $key)) {
@@ -36,7 +38,7 @@ class Libro extends RecursoBiblioteca implements prestable{
         parent::__construct($datos);
         $this->isbn = $isbn;
     }
-
+///
     public function obtenerDetallesPrestamo(){
         return $detallesPrestamo="";
     }
@@ -66,7 +68,7 @@ class DVD extends RecursoBiblioteca implements prestable{
     }
 }
 
-class GestorBiblioteca extends RecursoBiblioteca {
+class GestorBiblioteca  {
     private $recursos = [];
 
     public function cargarRecursos() {
@@ -74,30 +76,13 @@ class GestorBiblioteca extends RecursoBiblioteca {
         $data = json_decode($json, true);
         
         foreach ($data as $recursoData) {
-
-            if (!isset($recursoData['tipo'])) {
-                continue;
-            }
-
-            switch ($recursoData['tipo']) {
-                case 'Libro':
-                    $recurso = new Libro($recursoData, $recursoData['isbn']);
-                    break;
-                case 'Revista':
-                    $recurso = new Revista($recursoData, $recursoData['numeroEdicion']);
-                    break;
-                case 'DVD':
-                    $recurso = new DVD($recursoData, $recursoData['duracion']);
-                    break;
-                default:
-                    continue;
-            }
+            $recurso = new RecursoBiblioteca($recursoData);
+            $this->recursos[] = $recurso;
+        }
+        
         return $this->recursos;
-                                           
-
-                }
     }
+
+    // Implementar los demás métodos aquí
 }
 
-    
-    // Implementar los demás métodos aquí
