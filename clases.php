@@ -1,5 +1,9 @@
 <?php
 require_once ("prestable.php");
+
+$estadosLegibles = [
+    "estado" => ["disponible"=>"Disponible", "prestado"=> "Prestado", "en_preparacion"=> "En Preparación"]
+];
 abstract class RecursoBiblioteca implements prestable{
     public $id;
     public $titulo;
@@ -9,6 +13,9 @@ abstract class RecursoBiblioteca implements prestable{
     public $fechaAdquisicion;
     public $tipo;
 
+    public function obtenerDetallesPrestamo (){
+        
+    }
     public function __construct($datos) {
         foreach ($datos as $key => $value) {
             if (property_exists($this, $key)) {
