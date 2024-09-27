@@ -1,7 +1,6 @@
 <?php
-
-require_once ("Prestable.php");
-class RecursoBiblioteca implements Prestable {
+require_once ("prestable.php");
+abstract class RecursoBiblioteca implements prestable{
     public $id;
     public $titulo;
     public $autor;
@@ -17,37 +16,52 @@ class RecursoBiblioteca implements Prestable {
             }
         }
     }
+
+    public function obtenerDetallesPrestamo(){
+        return $detallesPrestamo="";
+    }
+
 }
 
 // Implementar las clases Libro, Revista y DVD aquí
-class Libro extends RecursoBiblioteca{
+class Libro extends RecursoBiblioteca implements prestable{
     public $isbn;
 
     public function __construct($datos, $isbn) {
         parent::__construct($datos);
         $this->isbn = $isbn;
     }
+
+    public function obtenerDetallesPrestamo(){
+        return $detallesPrestamo="";
+    }
 }
 
-class Revista extends RecursoBiblioteca{
+class Revista extends RecursoBiblioteca implements prestable{
     public $numeroEdicion;
     public function __construct($datos, $numeroEdicion) {
         parent::__construct($datos);
         $this->numeroEdicion = $numeroEdicion;
     }
+    
+    public function obtenerDetallesPrestamo(){
+        return $detallesPrestamo="";
+    }
 }
 
-class DVD extends RecursoBiblioteca{
+class DVD extends RecursoBiblioteca implements prestable{
     public $duracion;
     public function __construct($datos, $duracion) {
         parent::__construct($datos);
         $this->duracion = $duracion;
     }
+
+    public function obtenerDetallesPrestamo(){
+        return $detallesPrestamo="";
+    }
 }
 
-
-
-class GestorBiblioteca {
+class GestorBiblioteca  {
     private $recursos = [];
 
     public function cargarRecursos() {
